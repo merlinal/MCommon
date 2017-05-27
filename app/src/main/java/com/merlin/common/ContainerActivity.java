@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.merlin.core.at.MustFragment;
+import com.merlin.core.util.UiUtil;
 import com.merlin.core.util.Util;
 import com.merlin.view.bar.MBarView;
 import com.merlin.view.bar.model.Bar;
@@ -43,16 +44,6 @@ public class ContainerActivity extends AbstractActivity {
     }
 
     @Override
-    public void handleParam() {
-        super.handleParam();
-        Intent it = getIntent();
-        fragment = Util.loadClass(it.getStringExtra("fragmentName"));
-        if (it.getExtras() != null) {
-            fragment.setArguments(it.getExtras());
-        }
-    }
-
-    @Override
     protected int getLayoutResId() {
         return R.layout.container;
     }
@@ -60,6 +51,16 @@ public class ContainerActivity extends AbstractActivity {
     @Override
     public void initView() {
         super.initView();
+
+        Intent it = getIntent();
+        fragment = Util.loadClass(it.getStringExtra("fragmentName"));
+        if (fragment == null) {
+            System.out.print("not found this fragment -- " + it.getStringExtra("fragmentName"));
+            finish();
+        }
+        if (it.getExtras() != null) {
+            fragment.setArguments(it.getExtras());
+        }
 
         mBarView = Util.view(this, R.id.mBarView);
         mBarView.apply(bar = new Bar.Builder().setActivity(this).build());
