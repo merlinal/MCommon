@@ -10,13 +10,14 @@ import com.merlin.core.base.AbstractActivity;
 import com.merlin.core.base.AbstractFragment;
 import com.merlin.core.base.AbstractVM;
 import com.merlin.core.util.Util;
+import com.merlin.view.bar.MBarView;
 import com.merlin.view.bar.model.Bar;
 
 /**
  * Created by ncm on 2017/5/27.
  */
 
-public class ContainerActivity extends AbstractActivity<AbstractVM, ContainerBinding> {
+public class ContainerActivity extends AbstractActivity {
 
     public static void start(AbstractFragment srcFragment, @MustFragment Class<?> cls, Bundle bundle, int requestCode) {
         Intent it = new Intent(srcFragment.getContext(), ContainerActivity.class);
@@ -38,6 +39,7 @@ public class ContainerActivity extends AbstractActivity<AbstractVM, ContainerBin
 
     private AbstractFragment fragment;
     private Bar bar;
+    private MBarView mBarView;
 
     @Override
     public void initData() {
@@ -57,14 +59,16 @@ public class ContainerActivity extends AbstractActivity<AbstractVM, ContainerBin
 
     @Override
     protected int getLayoutResId() {
-        binding = DataBindingUtil.setContentView(this, R.layout.container);
-        binding.setBarModel(bar);
-        return 0;
+        return R.layout.container;
     }
 
     @Override
     public void initView() {
         super.initView();
+
+        mBarView = Util.view(this, R.id.mBarView);
+        mBarView.apply(bar = new Bar.Builder().setActivity(this).build());
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container_page, fragment)
@@ -76,8 +80,9 @@ public class ContainerActivity extends AbstractActivity<AbstractVM, ContainerBin
         fragment.onBackPressed();
     }
 
-    protected Bar bar() {
-        return bar;
+    protected MBarView bar() {
+        return mBarView;
     }
+
 
 }
