@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.merlin.core.base.AbstractVM;
 import com.merlin.core.base.ViewInterface;
 import com.merlin.view.bar.MBarView;
 

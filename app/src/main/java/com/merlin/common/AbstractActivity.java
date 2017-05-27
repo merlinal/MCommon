@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.merlin.core.base.AbstractVM;
 import com.merlin.core.base.ViewInterface;
 import com.merlin.core.util.Util;
 
