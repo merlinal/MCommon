@@ -21,7 +21,7 @@ public class ContainerActivity extends AbstractActivity<AbstractVM, ContainerBin
     public static void start(AbstractFragment srcFragment, @MustFragment Class<?> cls, Bundle bundle, int requestCode) {
         Intent it = new Intent(srcFragment.getContext(), ContainerActivity.class);
         it.putExtra("fragmentName", cls.getName());
-        if(bundle != null){
+        if (bundle != null) {
             it.putExtras(bundle);
         }
         srcFragment.startActivityForResult(it, requestCode);
@@ -30,7 +30,7 @@ public class ContainerActivity extends AbstractActivity<AbstractVM, ContainerBin
     public static void start(AbstractActivity activity, @MustFragment Class<?> cls, Bundle bundle, int requestCode) {
         Intent it = new Intent(activity, ContainerActivity.class);
         it.putExtra("fragmentName", cls.getName());
-        if(bundle != null){
+        if (bundle != null) {
             it.putExtras(bundle);
         }
         activity.startActivityForResult(it, requestCode);
@@ -50,6 +50,9 @@ public class ContainerActivity extends AbstractActivity<AbstractVM, ContainerBin
         super.handleParam();
         Intent it = getIntent();
         fragment = Util.loadClass(it.getStringExtra("fragmentName"));
+        if (it.getExtras() != null) {
+            fragment.setArguments(it.getExtras());
+        }
     }
 
     @Override
