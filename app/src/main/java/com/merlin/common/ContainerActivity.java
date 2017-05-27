@@ -1,14 +1,11 @@
 package com.merlin.common;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
-import com.merlin.common.databinding.ContainerBinding;
 import com.merlin.core.at.MustFragment;
 import com.merlin.core.base.AbstractActivity;
 import com.merlin.core.base.AbstractFragment;
-import com.merlin.core.base.AbstractVM;
 import com.merlin.core.util.Util;
 import com.merlin.view.bar.MBarView;
 import com.merlin.view.bar.model.Bar;
