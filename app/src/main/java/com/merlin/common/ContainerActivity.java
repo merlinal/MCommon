@@ -21,14 +21,18 @@ public class ContainerActivity extends AbstractActivity<AbstractVM, ContainerBin
     public static void start(AbstractFragment srcFragment, @MustFragment Class<?> cls, Bundle bundle, int requestCode) {
         Intent it = new Intent(srcFragment.getContext(), ContainerActivity.class);
         it.putExtra("fragmentName", cls.getName());
-        it.putExtras(bundle);
+        if(bundle != null){
+            it.putExtras(bundle);
+        }
         srcFragment.startActivityForResult(it, requestCode);
     }
 
     public static void start(AbstractActivity activity, @MustFragment Class<?> cls, Bundle bundle, int requestCode) {
         Intent it = new Intent(activity, ContainerActivity.class);
         it.putExtra("fragmentName", cls.getName());
-        it.putExtras(bundle);
+        if(bundle != null){
+            it.putExtras(bundle);
+        }
         activity.startActivityForResult(it, requestCode);
     }
 
