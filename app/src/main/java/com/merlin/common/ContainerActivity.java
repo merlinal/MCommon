@@ -25,13 +25,20 @@ public class ContainerActivity extends AbstractActivity<AbstractVM, ContainerBin
         srcFragment.startActivityForResult(it, requestCode);
     }
 
+    public static void start(AbstractActivity activity, @MustFragment Class<?> cls, Bundle bundle, int requestCode) {
+        Intent it = new Intent(activity, ContainerActivity.class);
+        it.putExtra("fragmentName", cls.getName());
+        it.putExtras(bundle);
+        activity.startActivityForResult(it, requestCode);
+    }
+
     private AbstractFragment fragment;
     private Bar bar;
 
     @Override
     public void initData() {
         super.initData();
-        bar = new Bar.Builder().build();
+        bar = new Bar.Builder().setActivity(this).build();
     }
 
     @Override
