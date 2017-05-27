@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.merlin.core.at.MustFragment;
-import com.merlin.core.base.AbstractActivity;
-import com.merlin.core.base.AbstractFragment;
 import com.merlin.core.util.Util;
 import com.merlin.view.bar.MBarView;
 import com.merlin.view.bar.model.Bar;
@@ -80,6 +78,5 @@ public class ContainerActivity extends AbstractActivity {
     protected MBarView bar() {
         return mBarView;
     }
-
 
 }
