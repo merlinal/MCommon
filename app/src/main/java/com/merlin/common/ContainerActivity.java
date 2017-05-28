@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.merlin.core.at.MustFragment;
+import com.merlin.core.util.LogUtil;
 import com.merlin.core.util.UiUtil;
 import com.merlin.core.util.Util;
 import com.merlin.view.bar.MBarView;
@@ -55,8 +56,9 @@ public class ContainerActivity extends AbstractActivity {
         Intent it = getIntent();
         fragment = Util.loadClass(it.getStringExtra("fragmentName"));
         if (fragment == null) {
-            System.out.print("not found this fragment -- " + it.getStringExtra("fragmentName"));
+            LogUtil.e("not found this fragment -- " + it.getStringExtra("fragmentName"));
             finish();
+            return;
         }
         if (it.getExtras() != null) {
             fragment.setArguments(it.getExtras());
