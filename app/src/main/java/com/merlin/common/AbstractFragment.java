@@ -34,7 +34,9 @@ public abstract class AbstractFragment<VM extends AbstractVM, Binding extends Vi
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return getLayoutView(inflater, container);
+        View view = getLayoutView(inflater, container);
+        initView();
+        return view;
     }
 
     protected abstract View getLayoutView(LayoutInflater inflater, @Nullable ViewGroup container);

@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import com.merlin.core.at.MustFragment;
 import com.merlin.core.util.LogUtil;
-import com.merlin.core.util.UiUtil;
 import com.merlin.core.util.Util;
 import com.merlin.view.bar.MBarView;
 import com.merlin.view.bar.model.Bar;
@@ -58,19 +57,19 @@ public class ContainerActivity extends AbstractActivity {
         if (fragment == null) {
             LogUtil.e("not found this fragment -- " + it.getStringExtra("fragmentName"));
             finish();
-            return;
-        }
-        if (it.getExtras() != null) {
-            fragment.setArguments(it.getExtras());
-        }
+        } else {
+            if (it.getExtras() != null) {
+                fragment.setArguments(it.getExtras());
+            }
 
-        mBarView = Util.view(this, R.id.mBarView);
-        mBarView.apply(bar = new Bar.Builder().setActivity(this).build());
+            mBarView = Util.view(this, R.id.mBarView);
+            mBarView.apply(bar = new Bar.Builder().setActivity(this).build());
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container_page, fragment)
-                .commitAllowingStateLoss();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container_page, fragment)
+                    .commitAllowingStateLoss();
+        }
     }
 
     @Override
