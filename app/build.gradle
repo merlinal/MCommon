@@ -24,6 +24,6 @@ android {
 }
 
 dependencies {
-    compile 'com.github.merlinal:MBar:-SNAPSHOT'
+    compile 'com.github.merlinal:mbar:-SNAPSHOT'
     compile 'com.github.merlinal:mtransition:-SNAPSHOT'
 }
