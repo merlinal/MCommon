@@ -33,6 +33,28 @@ public class ContainerActivity extends AbstractActivity {
         activity.startActivityForResult(it, requestCode);
     }
 
+    public static void startNoAnim(AbstractFragment srcFragment, @MustFragment Class<?> cls, Bundle bundle, int requestCode) {
+        Intent it = new Intent(srcFragment.getContext(), ContainerActivity.class);
+        it.putExtra("fragmentName", cls.getName());
+        if (bundle != null) {
+            it.putExtras(bundle);
+        }
+        it.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        srcFragment.startActivityForResult(it, requestCode);
+        srcFragment.getActivity().overridePendingTransition(0, 0);
+    }
+
+    public static void startNoAnim(AbstractActivity activity, @MustFragment Class<?> cls, Bundle bundle, int requestCode) {
+        Intent it = new Intent(activity, ContainerActivity.class);
+        it.putExtra("fragmentName", cls.getName());
+        if (bundle != null) {
+            it.putExtras(bundle);
+        }
+        it.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        activity.startActivityForResult(it, requestCode);
+        activity.overridePendingTransition(0, 0);
+    }
+
     private AbstractFragment fragment;
     private Bar bar;
     private MBarView mBarView;
