@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.merlin.core.base.AbstractVM;
 import com.merlin.core.base.IViewFlow;
 import com.merlin.core.util.MUtil;
 
@@ -15,11 +14,11 @@ import com.merlin.core.util.MUtil;
  * Created by ncm on 16/11/30.
  */
 
-public abstract class AbstractActivity<VM extends AbstractVM, Binding extends ViewDataBinding>
+public abstract class AbstractActivity<AbstractVM, Binding extends ViewDataBinding>
         extends AppCompatActivity
         implements IViewFlow {
 
-    protected VM vm;
+    protected AbstractVM vm;
     protected Binding binding;
 
     @Override

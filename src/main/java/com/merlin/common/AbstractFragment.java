@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.merlin.core.base.AbstractVM;
 import com.merlin.core.base.IViewFlow;
 import com.merlin.view.bar.MBarView;
 import com.merlin.view.bar.model.Bar;
@@ -18,11 +17,11 @@ import com.merlin.view.bar.model.Bar;
  * Created by ncm on 16/11/30.
  */
 
-public abstract class AbstractFragment<VM extends AbstractVM, Binding extends ViewDataBinding>
+public abstract class AbstractFragment<AbstractVM, Binding extends ViewDataBinding>
         extends Fragment
         implements IViewFlow {
 
-    protected VM vm;
+    protected AbstractVM vm;
     protected Binding binding;
 
     @Override
