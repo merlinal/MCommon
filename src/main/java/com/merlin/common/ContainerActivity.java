@@ -1,11 +1,12 @@
 package com.merlin.common;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.merlin.core.at.MustFragment;
-import com.merlin.core.util.LogUtil;
-import com.merlin.core.util.Util;
+import com.merlin.core.util.MLog;
+import com.merlin.core.util.MUtil;
 import com.merlin.view.bar.MBarView;
 import com.merlin.view.bar.model.Bar;
 
@@ -24,7 +25,7 @@ public class ContainerActivity extends AbstractActivity {
         srcFragment.startActivityForResult(it, requestCode);
     }
 
-    public static void start(AbstractActivity activity, @MustFragment Class<?> cls, Bundle bundle, int requestCode) {
+    public static void start(Activity activity, @MustFragment Class<?> cls, Bundle bundle, int requestCode) {
         Intent it = new Intent(activity, ContainerActivity.class);
         it.putExtra("fragmentName", cls.getName());
         if (bundle != null) {
@@ -44,7 +45,7 @@ public class ContainerActivity extends AbstractActivity {
         srcFragment.getActivity().overridePendingTransition(0, 0);
     }
 
-    public static void startNoAnim(AbstractActivity activity, @MustFragment Class<?> cls, Bundle bundle, int requestCode) {
+    public static void startNoAnim(Activity activity, @MustFragment Class<?> cls, Bundle bundle, int requestCode) {
         Intent it = new Intent(activity, ContainerActivity.class);
         it.putExtra("fragmentName", cls.getName());
         if (bundle != null) {
@@ -56,13 +57,11 @@ public class ContainerActivity extends AbstractActivity {
     }
 
     private AbstractFragment fragment;
-    private Bar bar;
     private MBarView mBarView;
 
     @Override
     public void initData() {
         super.initData();
-        bar = new Bar.Builder().setActivity(this).build();
     }
 
     @Override
@@ -75,17 +74,17 @@ public class ContainerActivity extends AbstractActivity {
         super.initView();
 
         Intent it = getIntent();
-        fragment = Util.loadClass(it.getStringExtra("fragmentName"));
+        fragment = MUtil.loadClass(it.getStringExtra("fragmentName"));
         if (fragment == null) {
-            LogUtil.e("not found this fragment -- " + it.getStringExtra("fragmentName"));
+            MLog.e("not found this fragment -- " + it.getStringExtra("fragmentName"));
             finish();
         } else {
             if (it.getExtras() != null) {
                 fragment.setArguments(it.getExtras());
             }
 
-            mBarView = Util.view(this, R.id.mBarView);
-            mBarView.apply(bar = new Bar.Builder().setActivity(this).build());
+            mBarView = MUtil.view(this, R.id.mBarView);
+            mBarView.apply(Bar.newInstance().activity(this));
 
             getSupportFragmentManager()
                     .beginTransaction()
@@ -99,8 +98,9 @@ public class ContainerActivity extends AbstractActivity {
         fragment.onBackPressed();
     }
 
-    protected MBarView bar() {
+    protected MBarView barView() {
         return mBarView;
     }
+
 
 }

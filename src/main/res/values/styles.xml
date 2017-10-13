@@ -1,0 +1,26 @@
+<resources>
+    <!--app样式-->
+    <style name="BaseTheme" parent="Theme.AppCompat.NoActionBar">
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+        <!-- below api 22-->
+        <!--<item name="windowNoTitle">true</item>-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 以下需自定义设置 -->
+        <item name="android:textColorPrimary">@color/light</item>
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="android:statusBarColor">@color/statusBar</item>
+        <item name="android:navigationBarColor">@color/navigationBar</item>
+    </style>
+
+    <!--app样式全屏-->
+    <style name="FullTheme" parent="BaseTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">@color/trans</item>
+    </style>
+
+</resources>

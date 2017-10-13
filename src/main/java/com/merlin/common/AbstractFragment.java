@@ -10,8 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.merlin.core.base.AbstractVM;
-import com.merlin.core.base.ViewInterface;
+import com.merlin.core.base.IViewFlow;
 import com.merlin.view.bar.MBarView;
+import com.merlin.view.bar.model.Bar;
 
 /**
  * Created by ncm on 16/11/30.
@@ -19,7 +20,7 @@ import com.merlin.view.bar.MBarView;
 
 public abstract class AbstractFragment<VM extends AbstractVM, Binding extends ViewDataBinding>
         extends Fragment
-        implements ViewInterface {
+        implements IViewFlow {
 
     protected VM vm;
     protected Binding binding;
@@ -70,9 +71,17 @@ public abstract class AbstractFragment<VM extends AbstractVM, Binding extends Vi
         }
     }
 
-    protected MBarView bar() {
+    protected MBarView barView() {
         if (getActivity() instanceof ContainerActivity) {
-            return ((ContainerActivity) getActivity()).bar();
+            return ((ContainerActivity) getActivity()).barView();
+        }
+        return null;
+    }
+
+    protected Bar bar() {
+        MBarView mBarView = barView();
+        if (mBarView != null) {
+            return mBarView.model();
         }
         return null;
     }
