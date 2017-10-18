@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 
 import com.merlin.core.base.IViewFlow;
 import com.merlin.view.bar.MBarView;
-import com.merlin.view.bar.model.Bar;
 
 /**
  * Created by ncm on 16/11/30.
@@ -73,14 +72,6 @@ public abstract class AbstractFragment<AbstractVM, Binding extends ViewDataBindi
     protected MBarView barView() {
         if (getActivity() instanceof ContainerActivity) {
             return ((ContainerActivity) getActivity()).barView();
-        }
-        return null;
-    }
-
-    protected Bar bar() {
-        MBarView mBarView = barView();
-        if (mBarView != null) {
-            return mBarView.model();
         }
         return null;
     }

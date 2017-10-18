@@ -8,7 +8,6 @@ import com.merlin.core.at.MustFragment;
 import com.merlin.core.util.MLog;
 import com.merlin.core.util.MUtil;
 import com.merlin.view.bar.MBarView;
-import com.merlin.view.bar.model.Bar;
 
 /**
  * Created by ncm on 2017/5/27.
@@ -84,7 +83,7 @@ public class ContainerActivity extends AbstractActivity {
             }
 
             mBarView = MUtil.view(this, R.id.mBarView);
-            mBarView.apply(Bar.newInstance().activity(this));
+            mBarView.onBackPressed(this);
 
             getSupportFragmentManager()
                     .beginTransaction()

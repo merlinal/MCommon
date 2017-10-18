@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.merlin.core.base.IViewFlow;
+import com.merlin.core.context.MContext;
 import com.merlin.core.util.MUtil;
 
 /**
@@ -29,6 +30,7 @@ public abstract class AbstractActivity<AbstractVM, Binding extends ViewDataBindi
         if (layoutId != 0) {
             setContentView(layoutId);
         }
+        MContext.inst().setActivity(this);
 
         handleParam();
         initData();
