@@ -1,11 +1,14 @@
 package com.merlin.common;
 
 import android.databinding.ViewDataBinding;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.merlin.core.base.IViewFlow;
 import com.merlin.core.context.MContext;
@@ -36,6 +39,12 @@ public abstract class AbstractActivity<AbstractVM, Binding extends ViewDataBindi
         initData();
         initTool();
         initView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MContext.inst().setActivity(this);
     }
 
     protected abstract int getLayoutResId();
@@ -76,6 +85,21 @@ public abstract class AbstractActivity<AbstractVM, Binding extends ViewDataBindi
             }
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    protected void setStatusColor(int color) {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                //状态栏
+                window.setStatusBarColor(color);
+                //底部导航栏
+                window.setNavigationBarColor(color);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
