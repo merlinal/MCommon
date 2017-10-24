@@ -33,7 +33,9 @@ public class ContainersActivity extends AbstractActivity {
     public void initView() {
         super.initView();
         mBarView = (MBarView) findViewById(R.id.barView);
-        mBarView.onBackPressed(this);
+        if (mBarView != null) {
+            mBarView.onBackPressed(this);
+        }
     }
 
     @Override
