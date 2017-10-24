@@ -33,13 +33,13 @@ public class ContainersActivity extends AbstractActivity {
     public void initView() {
         super.initView();
         mBarView = (MBarView) findViewById(R.id.barView);
+        mBarView.onBackPressed(this);
     }
 
     @Override
     public void onBackPressed() {
         if (fm.getBackStackEntryCount() > 1) {
-            super.onBackPressed();
-            show();
+            back();
         } else {
             ((AbstractFragment) fm.getFragments().get(0)).onBackPressed();
         }
@@ -56,6 +56,14 @@ public class ContainersActivity extends AbstractActivity {
      */
     public void backTo(String tag) {
         fm.popBackStack(tag, 0);
+        show();
+    }
+
+    /**
+     * 后退
+     */
+    public void back() {
+        fm.popBackStackImmediate();
         show();
     }
 
