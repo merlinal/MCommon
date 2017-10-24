@@ -102,5 +102,4 @@ public abstract class AbstractActivity<AbstractVM, Binding extends ViewDataBindi
         }
     }
 
-
 }

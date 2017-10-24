@@ -22,6 +22,7 @@ public abstract class AbstractFragment<AbstractVM, Binding extends ViewDataBindi
 
     protected AbstractVM vm;
     protected Binding binding;
+    protected View mRoot;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,9 +35,9 @@ public abstract class AbstractFragment<AbstractVM, Binding extends ViewDataBindi
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = getLayoutView(inflater, container);
+        mRoot = getLayoutView(inflater, container);
         initView();
-        return view;
+        return mRoot;
     }
 
     protected abstract View getLayoutView(LayoutInflater inflater, @Nullable ViewGroup container);

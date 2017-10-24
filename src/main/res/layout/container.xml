@@ -5,16 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/view_bar" />
-
     <com.merlin.view.bar.MBarView
-        android:id="@+id/mBarView"
+        android:id="@+id/barView"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         app:left_iconLeft="@drawable/back_white" />
 
     <FrameLayout
-        android:id="@+id/container_page"
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

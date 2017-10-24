@@ -10,6 +10,7 @@ import com.merlin.core.util.MUtil;
 import com.merlin.view.bar.MBarView;
 
 /**
+ * activity中嵌入一个fragment
  * Created by ncm on 2017/5/27.
  */
 
@@ -87,7 +88,7 @@ public class ContainerActivity extends AbstractActivity {
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.container_page, fragment)
+                    .replace(R.id.container, fragment)
                     .commitAllowingStateLoss();
         }
     }
@@ -97,7 +98,7 @@ public class ContainerActivity extends AbstractActivity {
         fragment.onBackPressed();
     }
 
-    protected MBarView barView() {
+    public MBarView barView() {
         return mBarView;
     }
 
