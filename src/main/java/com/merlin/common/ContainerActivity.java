@@ -83,7 +83,7 @@ public class ContainerActivity extends AbstractActivity {
                 fragment.setArguments(it.getExtras());
             }
 
-            mBarView = MUtil.view(this, R.id.mBarView);
+            mBarView = MUtil.view(this, R.id.barView);
             mBarView.onBackPressed(this);
 
             getSupportFragmentManager()
