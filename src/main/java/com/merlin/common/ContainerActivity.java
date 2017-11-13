@@ -74,7 +74,7 @@ public class ContainerActivity extends AbstractActivity {
         super.initView();
 
         Intent it = getIntent();
-        fragment = MUtil.loadClass(it.getStringExtra("fragmentName"));
+        fragment = MUtil.loadInstance(it.getStringExtra("fragmentName"));
         if (fragment == null) {
             MLog.e("not found this fragment -- " + it.getStringExtra("fragmentName"));
             finish();
