@@ -15,7 +15,7 @@ import com.merlin.core.context.MContext;
 import com.merlin.core.util.MUtil;
 
 /**
- * Created by ncm on 16/11/30.
+ * @author merlin
  */
 
 public abstract class AbstractActivity<AbstractVM, Binding extends ViewDataBinding>

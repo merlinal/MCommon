@@ -3,6 +3,7 @@ package com.merlin.common;
 import android.app.Activity;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,19 +11,25 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.merlin.core.base.IViewFlow;
+import com.merlin.core.tool.IClick;
+import com.merlin.core.tool.IHandler;
+import com.merlin.core.tool.SafeHandle;
+import com.merlin.core.tool.SafeOnClickListener;
 import com.merlin.view.bar.MBarView;
 
 /**
- * Created by ncm on 16/11/30.
+ * @author merlin
  */
 
 public abstract class AbstractFragment<AbstractVM, Binding extends ViewDataBinding>
         extends Fragment
-        implements IViewFlow {
+        implements IViewFlow, IClick, IHandler {
 
     protected AbstractVM vm;
     protected Binding binding;
     protected View mRoot;
+    private SafeOnClickListener mOnClickListener;
+    private SafeHandle mHandler;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +51,12 @@ public abstract class AbstractFragment<AbstractVM, Binding extends ViewDataBindi
 
     @Override
     public void initTool() {
+        mOnClickListener = new SafeOnClickListener(this);
+        mHandler = new SafeHandle<AbstractFragment>(this, this);
+    }
+
+    protected void setOnClickListener(View view) {
+        view.setOnClickListener(mOnClickListener);
     }
 
     @Override
@@ -56,6 +69,14 @@ public abstract class AbstractFragment<AbstractVM, Binding extends ViewDataBindi
 
     @Override
     public void initView() {
+    }
+
+    @Override
+    public void onClickView(View view) {
+    }
+
+    @Override
+    public void onHandleMessage(Message message) {
     }
 
     public void onBackPressed() {

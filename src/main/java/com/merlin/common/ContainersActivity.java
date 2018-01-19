@@ -10,9 +10,9 @@ import java.util.List;
 
 /**
  * activity中嵌入多个fragment
- * Created by Administrator on 2017/10/24.
+ *
+ * @author merlin
  */
-
 public class ContainersActivity extends AbstractActivity {
 
     private FragmentManager fm;

@@ -9,7 +9,7 @@
         android:id="@+id/barView"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        app:left_iconLeft="@drawable/back_white" />
+        app:left_iconLeft="@drawable/m_back_white" />
 
     <FrameLayout
         android:id="@+id/container"
