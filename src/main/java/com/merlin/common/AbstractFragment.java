@@ -1,6 +1,7 @@
 package com.merlin.common;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.os.Message;
@@ -86,7 +87,14 @@ public abstract class AbstractFragment<AbstractVM, Binding extends ViewDataBindi
     public void finishActivity() {
         Activity activity = getActivity();
         if (activity != null) {
-            activity.setResult(Activity.RESULT_OK);
+            activity.finish();
+        }
+    }
+
+    public void finishActivityWithResult(Intent it) {
+        Activity activity = getActivity();
+        if (activity != null) {
+            activity.setResult(Activity.RESULT_OK, it);
             activity.finish();
         }
     }
