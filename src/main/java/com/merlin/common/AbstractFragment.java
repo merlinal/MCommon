@@ -87,16 +87,16 @@ public abstract class AbstractFragment<AbstractVM, Binding extends ViewDataBindi
     public void finishActivity() {
         Activity activity = getActivity();
         if (activity != null) {
+            Intent resultIntent = getResultIntent();
+            if (resultIntent != null) {
+                activity.setResult(Activity.RESULT_OK, resultIntent);
+            }
             activity.finish();
         }
     }
 
-    public void finishActivityWithResult(Intent it) {
-        Activity activity = getActivity();
-        if (activity != null) {
-            activity.setResult(Activity.RESULT_OK, it);
-            activity.finish();
-        }
+    protected Intent getResultIntent() {
+        return null;
     }
 
     protected MBarView barView() {
