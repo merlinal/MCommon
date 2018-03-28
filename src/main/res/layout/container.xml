@@ -8,7 +8,7 @@
     <com.merlin.view.bar.MBarView
         android:id="@+id/barView"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/size_normal"
         app:left_iconLeft="@drawable/m_back_white" />
 
     <FrameLayout
