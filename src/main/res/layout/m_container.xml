@@ -3,16 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <com.merlin.view.bar.MBarView
-        android:id="@+id/barView"
+        android:id="@+id/m_barView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_normal"
         app:left_iconLeft="@drawable/m_back_white" />
 
     <FrameLayout
-        android:id="@+id/container"
+        android:id="@+id/m_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

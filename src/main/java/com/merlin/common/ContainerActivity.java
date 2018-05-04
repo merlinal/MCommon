@@ -1,114 +1,34 @@
 package com.merlin.common;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-
-import com.merlin.core.util.MLog;
 import com.merlin.core.util.MUtil;
 import com.merlin.view.bar.MBarView;
 
 /**
  * activity中嵌入一个fragment
- * Created by ncm on 2017/5/27.
+ * @author zal
  */
 
-public class ContainerActivity extends AbstractActivity {
+public class ContainerActivity extends ContainerFullActivity {
 
-    public static void start(AbstractFragment srcFragment, Class<?> cls, Bundle bundle, int requestCode) {
-        Intent it = new Intent(srcFragment.getContext(), ContainerActivity.class);
-        it.putExtra("fragmentName", cls.getName());
-        if (bundle != null) {
-            it.putExtras(bundle);
-        }
-        srcFragment.startActivityForResult(it, requestCode);
-    }
-
-    public static void start(Activity activity, Class<?> cls, Bundle bundle, int requestCode) {
-        Intent it = new Intent(activity, ContainerActivity.class);
-        it.putExtra("fragmentName", cls.getName());
-        if (bundle != null) {
-            it.putExtras(bundle);
-        }
-        activity.startActivityForResult(it, requestCode);
-    }
-
-    public static void startNoAnim(AbstractFragment srcFragment, Class<?> cls, Bundle bundle, int requestCode) {
-        Intent it = new Intent(srcFragment.getContext(), ContainerActivity.class);
-        it.putExtra("fragmentName", cls.getName());
-        if (bundle != null) {
-            it.putExtras(bundle);
-        }
-        it.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        srcFragment.startActivityForResult(it, requestCode);
-        srcFragment.getActivity().overridePendingTransition(0, 0);
-    }
-
-    public static void startNoAnim(Activity activity, Class<?> cls, Bundle bundle, int requestCode) {
-        Intent it = new Intent(activity, ContainerActivity.class);
-        it.putExtra("fragmentName", cls.getName());
-        if (bundle != null) {
-            it.putExtras(bundle);
-        }
-        it.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        activity.startActivityForResult(it, requestCode);
-        activity.overridePendingTransition(0, 0);
-    }
-
-    private AbstractFragment fragment;
     private MBarView mBarView;
 
     @Override
-    public void initData() {
-        super.initData();
-    }
-
-    @Override
     protected int getLayoutResId() {
-        return R.layout.container;
+        return R.layout.m_container;
     }
 
     @Override
     public void initView() {
         super.initView();
 
-        Intent it = getIntent();
-        setFragment(it.getStringExtra("fragmentName"), it.getExtras());
-
-        mBarView = MUtil.view(this, R.id.barView);
+        mBarView = MUtil.view(this, R.id.m_barView);
         mBarView.onBackPressed(this);
     }
 
-    @Override
-    public void onBackPressed() {
-        fragment.onBackPressed();
-    }
 
     public MBarView barView() {
         return mBarView;
     }
 
-    protected void initFragment(Class<?> cls, Bundle bundle) {
-        setFragment(cls.getName(), bundle);
-    }
-
-    private void setFragment(String fragmentName, Bundle bundle) {
-        if (fragmentName == null) {
-            return;
-        }
-        fragment = MUtil.loadInstance(fragmentName);
-        if (fragment == null) {
-            MLog.e("not found this fragment -- " + fragmentName);
-            finish();
-        } else {
-            if (bundle != null) {
-                fragment.setArguments(bundle);
-            }
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.container, fragment)
-                    .commitAllowingStateLoss();
-        }
-    }
 
 }

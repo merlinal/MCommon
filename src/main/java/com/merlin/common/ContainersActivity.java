@@ -20,7 +20,7 @@ public class ContainersActivity extends AbstractActivity {
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.container;
+        return R.layout.m_container;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ContainersActivity extends AbstractActivity {
     @Override
     public void initView() {
         super.initView();
-        mBarView = (MBarView) findViewById(R.id.barView);
+        mBarView = (MBarView) findViewById(R.id.m_barView);
         if (mBarView != null) {
             mBarView.onBackPressed(this);
         }
