@@ -16,7 +16,7 @@ public class ContainerFullActivity extends AbstractActivity {
     public final static String PARAM_FRAGMENT_NAME = "fragmentName";
 
     public static void start(AbstractFragment srcFragment, Class<?> cls, Bundle bundle, int requestCode) {
-        Intent it = new Intent(srcFragment.getContext(), ContainerActivity.class);
+        Intent it = new Intent(srcFragment.getContext(), ContainerFullActivity.class);
         it.putExtra(PARAM_FRAGMENT_NAME, cls.getName());
         if (bundle != null) {
             it.putExtras(bundle);
@@ -25,7 +25,7 @@ public class ContainerFullActivity extends AbstractActivity {
     }
 
     public static void start(Activity activity, Class<?> cls, Bundle bundle, int requestCode) {
-        Intent it = new Intent(activity, ContainerActivity.class);
+        Intent it = new Intent(activity, ContainerFullActivity.class);
         it.putExtra(PARAM_FRAGMENT_NAME, cls.getName());
         if (bundle != null) {
             it.putExtras(bundle);
@@ -34,7 +34,7 @@ public class ContainerFullActivity extends AbstractActivity {
     }
 
     public static void startNoAnim(AbstractFragment srcFragment, Class<?> cls, Bundle bundle, int requestCode) {
-        Intent it = new Intent(srcFragment.getContext(), ContainerActivity.class);
+        Intent it = new Intent(srcFragment.getContext(), ContainerFullActivity.class);
         it.putExtra(PARAM_FRAGMENT_NAME, cls.getName());
         if (bundle != null) {
             it.putExtras(bundle);
@@ -45,7 +45,7 @@ public class ContainerFullActivity extends AbstractActivity {
     }
 
     public static void startNoAnim(Activity activity, Class<?> cls, Bundle bundle, int requestCode) {
-        Intent it = new Intent(activity, ContainerActivity.class);
+        Intent it = new Intent(activity, ContainerFullActivity.class);
         it.putExtra(PARAM_FRAGMENT_NAME, cls.getName());
         if (bundle != null) {
             it.putExtras(bundle);
